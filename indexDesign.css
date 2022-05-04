@@ -1,0 +1,35 @@
+.container {
+    font-family: 'HSYuji-Regular';
+}
+
+/* #toGame under .row */
+/* 오른쪽 버튼 4개 설정 */
+.row .toGame {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-color:white;
+    background-color: rgba(7, 42, 96, 1);
+    
+    /* font settings */
+    color:aliceblue;
+    font-size: 22px;
+}
+h1 {
+    color:white;
+}
+
+/* 웹폰트 아무거나 추가 */
+@font-face {
+    font-family: 'HSYuji-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 임시로 구역 색깔 입힘 */
+#leftDiv {
+    background-color:rgb(54, 161, 15);
+}
+#rightDiv {
+    background-color: gold;
+}

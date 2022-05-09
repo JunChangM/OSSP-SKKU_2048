@@ -5,12 +5,17 @@
 /* #toGame under .row */
 /* 오른쪽 버튼 4개 설정 */
 .row .toGame {
-    width: 100px;
+    width: 250px;
     height: 100px;
     margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-color:white;
     background-color: rgba(7, 42, 96, 1);
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
     
+
     /* font settings */
     color:aliceblue;
     font-size: 22px;

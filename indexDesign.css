@@ -1,3 +1,7 @@
+/* INDEX.HTML STYLE */
+/* INDEX.HTML STYLE */
+/* INDEX.HTML STYLE */
+
 .container {
     font-family: 'HSYuji-Regular';
 }
@@ -37,4 +41,20 @@ h1 {
 }
 #rightDiv {
     background-color: gold;
+}
+
+/* INDEX.HTML STYLE ENDS */
+
+/* GAME STYLE */
+/* GAME STYLE */
+/* GAME STYLE */
+
+#gameTable {
+    width: 60%;
+    margin: auto;
+}
+
+.Boxes {
+    background-color: chartreuse;
+    aspect-ratio: 1;
 }

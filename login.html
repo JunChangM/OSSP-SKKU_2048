@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Main</title>
+        <title>Login</title>
         <!-- CSS Links -->
         <link rel="stylesheet" href="indexDesign.css">
          <!-- Bootstrap CSS -->
@@ -25,16 +25,18 @@
                 <div id = "rightDiv" class="col">
                     <div class="row">
                         <!-- Sample Test Button (현재 link = 게임화면 html) -->
-                        <button type="button" class = "toGame"  onclick="location.href='game.html';">알바 START</button>
-                    </div>
-                    <div class="row">
-                        <button type="button" class = "toGame" onclick="location.href='game.html';">발자취</button>
-                    </div>
-                    <div class="row">
-                        <button type="button" class = "toGame" onclick="location.href='game.html';">리더보드</button>
-                    </div>
-                    <div class="row">
-                        <button type="button" class = "toGame" onclick="location.href='game.html';">출장알바</button>
+                        <div class="loginmain">
+                          <h1 class="logo">Login</h1>
+                        
+                          <div class="container">
+                            <div class="loginbox">
+                              <input type="text" placeholder="ID" id="id" class="account" style="margin: 0 auto; float: none;">
+                              <input type="password" placeholder="Password" id="password" class="account"  style="margin: 0 auto; float: none;">
+                              <button id="login" class="account"  style="margin: 0 auto; float: none;">login</button>
+                              <p id="alert" class="account"> </p>
+                            </div>
+                          </div> 
+                        </div>
                     </div>
                 </div>
             </div>

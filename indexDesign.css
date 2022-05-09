@@ -1,7 +1,9 @@
 .container {
     font-family: 'HSYuji-Regular';
 }
-
+body{
+    margin: 0;
+}
 /* #toGame under .row */
 /* 오른쪽 버튼 4개 설정 */
 .row .toGame {
@@ -10,7 +12,7 @@
     margin: auto;
     margin-top: 5px;
     margin-bottom: 5px;
-    border-color:white;
+    border-color: white;
     background-color: rgba(7, 42, 96, 1);
     border-top-left-radius: 5px; 
     border-bottom-left-radius: 5px; 
@@ -31,10 +33,54 @@ h1 {
     font-weight: normal;
     font-style: normal;
 }
+
+#background{
+    background-color:rgb(221, 252, 144);
+    background-size:cover;
+}
 /* 임시로 구역 색깔 입힘 */
 #leftDiv {
     background-color:rgb(54, 161, 15);
+    padding:50px;
 }
 #rightDiv {
     background-color: gold;
+}
+
+
+
+
+/* login.html*/
+.loginmain {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+.logo {
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+
+#login {
+    width: 200px;
+    background-color: skyblue;
+    border-color: transparent;
+    color: white;
+}
+
+.account {
+    display: block;
+    margin-bottom: 3px;
+    padding: 3px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+#alert {
+    border-color: transparent;
 }

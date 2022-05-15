@@ -49,6 +49,7 @@ h1 {
 /* GAME STYLE */
 /* GAME STYLE */
 
+
 #gameTable {
     width: 60%;
     margin: auto;
@@ -56,5 +57,5 @@ h1 {
 
 .Boxes {
     background-color: chartreuse;
-    aspect-ratio: 1;
+    aspect-ratio: 1; /* Shaping the blocks to be exact squares */
 }

@@ -12,7 +12,6 @@ body {
 
 .row {
     font-family: 'HSYuji-Regular';
-    padding-top: 3rem;
 }
 
 .row .btn_row {
@@ -99,10 +98,20 @@ body{
 }
 
 .Boxes {
-    background-color: chartreuse;
+    background-color: rgb(7, 42, 96);
+    border: 3px solid white;
     aspect-ratio: 1; /* Shaping the blocks to be exact squares */
+
+    /* below options align the images center in the boxes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.items {
+    width:inherit;
+    height:inherit;
+}
 
 /* login.html*/
 .loginmain {

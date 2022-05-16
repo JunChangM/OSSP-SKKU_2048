@@ -1,9 +1,25 @@
 /* INDEX.HTML STYLE */
 /* INDEX.HTML STYLE */
 /* INDEX.HTML STYLE */
+body {
+    --bs-body-bg: #FFFFE0;
+}
 
 .container {
     font-family: 'HSYuji-Regular';
+    padding-top: 80px;
+}
+
+.row {
+    font-family: 'HSYuji-Regular';
+    padding-top: 3rem;
+}
+
+.row .btn_row {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 body{
     margin: 0;
@@ -12,23 +28,39 @@ body{
 /* 오른쪽 버튼 4개 설정 */
 .row .toGame {
     width: 250px;
-    height: 100px;
-    margin: auto;
+    height: 80px;
     margin-top: 5px;
     margin-bottom: 5px;
-    border-color: white;
+    margin: auto;
+    border-color:white;
     background-color: rgba(7, 42, 96, 1);
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px; 
+    border-radius: 15px; 
     
-
     /* font settings */
     color:aliceblue;
     font-size: 22px;
 }
 
-h1 {
-    color:white;
+.row h1 {
+    font-size: 70px;
+    color:rgb(54, 161, 15);
+    padding-top: 280px;
+}
+
+.row h3 {
+    color: #FFC1B5;
+}
+
+.row h4 {
+    color:rgb(54, 161, 15);
+}
+
+.line {
+    border: 1px solid rgb(54, 161, 15);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 8rem;
+    margin-right: 8rem;
 }
 
 /* 웹폰트 아무거나 추가 */
@@ -39,17 +71,19 @@ h1 {
     font-style: normal;
 }
 
-#background{
-    background-color:rgb(221, 252, 144);
-    background-size:cover;
-}
 /* 임시로 구역 색깔 입힘 */
 #leftDiv {
-    background-color:rgb(54, 161, 15);
-    padding:50px;
+    border: 5px solid rgb(54, 161, 15);
+    text-align: center;
+    width: 620px;
+    height: 620px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
+
 #rightDiv {
     background-color: gold;
+    margin-top:45px;
 }
 
 /* INDEX.HTML STYLE ENDS */
@@ -103,4 +137,6 @@ h1 {
 
 #alert {
     border-color: transparent;
+    margin-top: 45px;
+
 }

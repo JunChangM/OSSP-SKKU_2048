@@ -1,49 +1,3 @@
-/*index.html*/
-
-const id = document.getElementById('id')
-const password = document.getElementById('password')
-const login = document.getElementById('login')
-let errStack = 0;
-
-login.addEventListener('click', () => {
-    lastid = id.value;
-    const lastpassword = localStorage.getItem(lastid);
-
-    if (id.value == 'user') {
-        if (password.value == '0000') {
-            alert('테스트용 계정으로 로그인 되었습니다!');
-            window.location.replace("main.html");
-        }
-        else {
-            alert('비밀번호를 다시 입력해주세요.');
-            errStack ++;
-        }
-    }
-    else if(id.value.substring(0, 2) === "lb"){
-        alert('사용자 변수입니다. 다른 아이디를 입력해주세요.');
-    }
-    else if (lastpassword == password.value) {
-        alert(`${id.value}님 로그인 되었습니다. 재방문을 환영합니다.`);
-        localStorage.removeItem("user");
-        localStorage.setItem("user",id.value);
-        window.location.replace("main.html");
-
-    }
-    else {
-        alert('없는 계정입니다. 아이디를 새로 생성합니다.');
-        textid = id.value; 
-        textpw = password.value; 
-        localStorage.setItem(textid, textpw);
-        localStorage.removeItem("user");
-        localStorage.setItem("user",textid);
-        window.location.replace("main.html");
-    }
-
-    if (errStack >= 5) {
-        alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
-    }
-})
-
 /*leader board*/
 
 function refresh_lb() {
@@ -86,20 +40,13 @@ function update_lb() {
     }
 }
 
-/*main.html*/
-
-let temp = document.querySelector("#toGame");
-temp.addEventListener("click",  () => {
-    console.log("Button Clicked");
-});
-
 // game.html
 // game.html
 // game.html
 
 // image priority (11 classes)
 let imgPriorityArray = ["coin_100", "coin_500", "bill_1000", "bill_5000", "bill_10000", "bill_50000", "carrier", "hotel", "plane_ticket", "SKKUchar", "plane"];
-
+let acquiredImg = [false, false, false, false, false, false, false, false, false, false, false];
 let boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
 
 // Keyboard Input Handle
@@ -146,6 +93,8 @@ function updateChange() {
         }
     }
     // add
+    let stack = document.getElementById("stack");
+    let stack2 = document.getElementById("stack2");
     for (let i = 0; i <= 3; i++) {
         for (let j = 0; j <= 3; j++) {
             if (boardArray[i][j] === -1) continue;
@@ -159,41 +108,117 @@ function updateChange() {
             {
             case imgPriorityArray[0]:
                 img.src = "images/coin_100.png";
+                if (acquiredImg[0] === false) {
+                    acquiredImg[0] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[1]:
                 img.src = "images/coin_500.png";
+                if (acquiredImg[1] === false) {
+                    acquiredImg[1] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[2]:
                 img.src = "images/bill_1000.png";
+                if (acquiredImg[2] === false) {
+                    acquiredImg[2] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             
             case imgPriorityArray[3]:
                 img.src = "images/bill_5000.png";
+                if (acquiredImg[3] === false) {
+                    acquiredImg[3] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[4]:
                 img.src = "images/bill_10000.png";
+                if (acquiredImg[4] === false) {
+                    acquiredImg[4] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[5]:
                 img.src = "images/bill_50000.png";
+                if (acquiredImg[5] === false) {
+                    acquiredImg[5] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
-            
             case imgPriorityArray[6]:
                 img.src = "images/carrier.png";
+                if (acquiredImg[6] === false) {
+                    acquiredImg[6] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack2.appendChild(newImage);
+                }
                 break;
             
             case imgPriorityArray[7]:
                 img.src = "images/hotel.png";
+                if (acquiredImg[7] === false) {
+                    acquiredImg[7] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack2.appendChild(newImage);
+                }
                 break;
             
             case imgPriorityArray[8]:
                 img.src = "images/plane_ticket.png";
+                if (acquiredImg[8] === false) {
+                    acquiredImg[8] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack2.appendChild(newImage);
+                }
                 break;
             
             case imgPriorityArray[9]:
                 img.src = "images/SKKUchar.png";
+                if (acquiredImg[9] === false) {
+                    acquiredImg[9] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack2.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[10]:
                 img.src = "images/plane.png";
+                if (acquiredImg[10] === false) {
+                    acquiredImg[10] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack2.appendChild(newImage);
+                }
                 isClear = true;
                 break;
             }
@@ -349,7 +374,26 @@ function checkIsFull()
 // execution area
 
 init();
-
+// refresh button event listener
+document.getElementById("refreshGame").addEventListener("click", () => {
+    boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
+    
+    let stack = document.getElementById("stack");
+    while (stack.firstElementChild)
+    {
+        stack.removeChild(stack.firstElementChild);
+    }
+    let stack2 = document.getElementById("stack2");
+    while (stack2.firstElementChild)
+    {
+        stack2.removeChild(stack2.firstElementChild);
+    }
+    acquiredImg = [false, false, false, false, false, false, false, false, false, false, false];
+    isClear = false;
+    isGameOver = false;
+    updateChange();
+    createImg();
+});
 // game.html ends
 // game.html ends
 // game.html ends

@@ -1,4 +1,4 @@
-/*login.html*/
+/*index.html*/
 
 const id = document.getElementById('id')
 const password = document.getElementById('password')
@@ -40,12 +40,12 @@ login.addEventListener('click', () => {
 })
 /*leader board*/
 
-/*index*/
+/*main.html*/
 
-// let temp = document.querySelector("#toGame");
-// temp.addEventListener("click",  () => {
-//     console.log("Button Clicked");
-// });
+let temp = document.querySelector("#toGame");
+temp.addEventListener("click",  () => {
+    console.log("Button Clicked");
+});
 
 // game.html
 // game.html
@@ -83,10 +83,12 @@ function init() {
 }
 
 let isClear = false;
+let isGameOver = false;
 // 변화 업데이트 (move에만 관련...이었던)
 function updateChange() {
 
     if (isClear === true) return; // 깼으면 업뎃 안함
+    else if (isGameOver === true) return; // gameover => 업뎃 안함
     // delete
     for (let i = 0; i <= 3; i++) {
         for (let j = 0; j <= 3; j++) {
@@ -160,13 +162,17 @@ function updateChange() {
 
     // game clear
     if (isClear === true) {
-
+        alert("축하합니다!\n명륜이는 여행을 떠날 준비를 마쳤습니다!");
+        return;
     }
 
     // check gameover
-
+    isGameOver = checkGameOver();
     // if yes
-
+    if (isGameOver === true) {
+        alert("아쉽게도 명륜이는 모종의 이유로 여행을 떠날 수 없게 되었습니다...");
+        return;
+    }
     // if not over
     createImg();
 }
@@ -269,6 +275,34 @@ function createImg()
     randomCell.appendChild(imgElement);
 }
 
+// checking gameover functions, true if gameover
+function checkGameOver()
+{
+    for (let i = 0 ; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (boardArray[i][j] === -1) 
+                return false;
+        }
+    }
+    for (let i = 0 ; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (boardArray[i][j] === boardArray[i][j+1])
+                return false;
+        }
+    }
+    for (let i = 0 ; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (boardArray[i][j] === boardArray[i+1][j])
+                return false;
+        }
+    }
+    return true;
+}
+
 // execution area
 
 init();
+
+// game.html ends
+// game.html ends
+// game.html ends

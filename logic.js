@@ -1,51 +1,51 @@
 /*index.html*/
 
-const id = document.getElementById('id')
-const password = document.getElementById('password')
-const login = document.getElementById('login')
-let errStack = 0;
+// const id = document.getElementById('id')
+// const password = document.getElementById('password')
+// const login = document.getElementById('login')
+// let errStack = 0;
 
 
-login.addEventListener('click', () => {
-    lastid = id.value;
+// login.addEventListener('click', () => {
+//     lastid = id.value;
     
-    const lastpassword = localStorage.getItem(lastid);
+//     const lastpassword = localStorage.getItem(lastid);
 
-    if (id.value == 'user') {
-        if (password.value == '0000') {
-            alert('테스트용 계정으로 로그인 되었습니다!');
-            window.location.replace("index.html");
-        }
-        else {
-            alert('비밀번호를 다시 입력해주세요.');
-            errStack ++;
-        }
-    }
-    else if (lastpassword == id.value) {
-        alert(`${id.value}님 로그인 되었습니다. 재방문을 환영합니다.`);
-        window.location.replace("index.html");
+//     if (id.value == 'user') {
+//         if (password.value == '0000') {
+//             alert('테스트용 계정으로 로그인 되었습니다!');
+//             window.location.replace("index.html");
+//         }
+//         else {
+//             alert('비밀번호를 다시 입력해주세요.');
+//             errStack ++;
+//         }
+//     }
+//     else if (lastpassword == id.value) {
+//         alert(`${id.value}님 로그인 되었습니다. 재방문을 환영합니다.`);
+//         window.location.replace("index.html");
 
-    }
-    else {
-        alert('없는 계정입니다. 아이디를 새로 생성합니다.');
-        textid = id.value; 
-        textpw = password.value; 
-        localStorage.setItem(textid, textpw);
-        window.location.replace("index.html");
-    }
+//     }
+//     else {
+//         alert('없는 계정입니다. 아이디를 새로 생성합니다.');
+//         textid = id.value; 
+//         textpw = password.value; 
+//         localStorage.setItem(textid, textpw);
+//         window.location.replace("index.html");
+//     }
 
-    if (errStack >= 5) {
-        alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
-    }
-})
-/*leader board*/
+//     if (errStack >= 5) {
+//         alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
+//     }
+// })
+// /*leader board*/
 
-/*main.html*/
+// /*main.html*/
 
-let temp = document.querySelector("#toGame");
-temp.addEventListener("click",  () => {
-    console.log("Button Clicked");
-});
+// let temp = document.querySelector("#toGame");
+// temp.addEventListener("click",  () => {
+//     console.log("Button Clicked");
+// });
 
 // game.html
 // game.html
@@ -53,7 +53,7 @@ temp.addEventListener("click",  () => {
 
 // image priority (11 classes)
 let imgPriorityArray = ["coin_100", "coin_500", "bill_1000", "bill_5000", "bill_10000", "bill_50000", "carrier", "hotel", "plane_ticket", "SKKUchar", "plane"];
-
+let acquiredImg = [false, false, false, false, false, false, false, false, false, false, false];
 let boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
 
 // Keyboard Input Handle
@@ -100,6 +100,7 @@ function updateChange() {
         }
     }
     // add
+    let stack = document.getElementById("stack");
     for (let i = 0; i <= 3; i++) {
         for (let j = 0; j <= 3; j++) {
             if (boardArray[i][j] === -1) continue;
@@ -113,9 +114,23 @@ function updateChange() {
             {
             case imgPriorityArray[0]:
                 img.src = "images/coin_100.png";
+                if (acquiredImg[0] === false) {
+                    acquiredImg[0] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[1]:
                 img.src = "images/coin_500.png";
+                if (acquiredImg[1] === false) {
+                    acquiredImg[1] = true;
+                    let newImage = document.createElement("img");
+                    newImage.classList.add("items", "stackItems");
+                    newImage.src = img.src;
+                    stack.appendChild(newImage);
+                }
                 break;
             case imgPriorityArray[2]:
                 img.src = "images/bill_1000.png";
@@ -303,7 +318,20 @@ function checkIsFull()
 // execution area
 
 init();
-
+// refresh button event listener
+document.getElementById("refreshGame").addEventListener("click", () => {
+    boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
+    
+    let stack = document.getElementById("stack");
+    while (stack.firstElementChild)
+    {
+        stack.removeChild(stack.firstElementChild);
+    }
+    updateChange();
+    isClear = false;
+    isGameOver = false;
+    createImg();
+});
 // game.html ends
 // game.html ends
 // game.html ends

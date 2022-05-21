@@ -101,12 +101,24 @@ body{
 /* GAME STYLE */
 /* GAME STYLE */
 
+#returnButtonGame {
+    border-radius: 15px;
+    aspect-ratio: 1.2;
+}   
 
 #gameTable {
-    width: 60%;
+    /* width: 60%; */
     margin: auto;
 }
-
+.board {
+    width:600px;
+    height:600px;
+    margin-left: 10rem;
+    margin-right: 3rem;
+}
+.secondLine {
+    margin:auto;
+}
 .Boxes {
     background-color: rgb(7, 42, 96);
     border: 3px solid white;
@@ -117,11 +129,33 @@ body{
     align-items: center;
     justify-content: center;
 }
-
+#refreshGame {
+    height: fit-content;
+    aspect-ratio: 1;
+    border-radius : 15px;
+    text-align:center;
+    margin:0;
+}
+.bi-arrow-clockwise {
+    font-size:30px;
+}
+.bi-backspace {
+    font-size: 30px;
+}
 /* coins */
 .items {
     width:inherit;
     height:inherit;
+}
+#stack {
+    background-color:#FFC1B5;
+    margin-top: 2rem;
+    width:100px;
+}
+
+.stackItems {
+    width:100px;
+    height:100px;
 }
 
 /* login.html*/

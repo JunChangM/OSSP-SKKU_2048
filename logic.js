@@ -50,39 +50,39 @@ function refresh_lb() {
     let sum = 0;
     for (let i=0; i<4; i++)
         for (let j=0; j<4; j++)
-            sum += (boardArray + 1) * 2;
+            sum += (boardArray[i][j] + 1) * 2;
     
-    let lb_name = "lb" + localStorage.getItem("user");
-    if (localStorage.getItem(lb_name) !== null) {
-        if (parseInt(localStorage.getItem(lb_name) < sum))
-            localStorage.setItem(lb_name, sum);
+    let user_name = localStorage.getItem("user");
+    if (localStorage.getItem(user_name) !== null) {
+        if (parseInt(localStorage.getItem(user_name) < sum))
+            localStorage.setItem(user_name, sum);
     }
     else {
-        localStorage.setItem(lb_name, sum);
+        localStorage.setItem(user_name, sum);
     }
     update_lb();
 }
 
 function update_lb() {
-    let lb_cnt = 0;
-    for (let i=0; i<localStorage.length; i++)
-        if (localStorage.key(i).substring(0, 2) === "lb")
-            lb_cnt++;
-    
-    lb_cnt = (lb > 7) ? 7 : lb_cnt;
-    let user_id = localStorage.getItem("user");
-    let target_val, cmp_val, saved_name = null, saved_score = -1;
-    for (let i=0; i<lb_cnt; i++) {
-        target_val = document.getElementById("score" + (i+1).toString()).innerText;
-        target_val = (target_val === "") ? "0" :target_val;
-        
-        cmp_val = (saved_score === -1) ? parseInt(localStorage.getItem("lb" + user_id)) : saved_score;
-        if (parseInt(target_val) < cmp_val) {
-            saved_name = document.getElementById("name" + (i+1).toString()).innerText;
-            saved_score = parseInt(target_val);
-            document.getElementById("name" + (i+1).toString()).innerText = ((saved_name === null) ? user_id : saved_name);
-            document.getElementById("score" + (i+1).toString()).innerText = cmp_val.toString();
+    let score_ary = Array(), cnt = 0;
+    for (let i=0; i<localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key !== "user") {
+            score_ary.push(Array(key, localStorage.getItem(key)));
+            cnt++;
         }
+    }
+
+    score_ary.sort(function(a, b) {
+        let num_a = parseInt(a[1]), num_b = parseInt(b[1]);
+        if (num_a > num_b) return -1;
+        else if (num_a == num_b) return 0;
+        else if (num_a < num_b) return 1;
+    })
+
+    for (let i=1; i<=((cnt < 7) ? cnt : 7); i++) {
+        document.getElementById("name" + i.toString()).innerHTML = score_ary[i-1][0];
+        document.getElementById("score" + i.toString()).innerHTML = score_ary[i-1][1];
     }
 }
 

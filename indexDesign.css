@@ -82,7 +82,11 @@ body{
 
 #rightDiv {
     background-color: gold;
-    margin-top:45px;
+    text-align: center;
+    width: 620px;
+    height: 620px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* INDEX.HTML STYLE ENDS */
@@ -115,14 +119,11 @@ body{
 
 /* login.html*/
 .loginmain {
-    width: 300px;
-    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
+    margin: auto 0;
 }
 .logo {
     margin-top: 0px;

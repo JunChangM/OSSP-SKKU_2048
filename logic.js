@@ -38,7 +38,7 @@ login.addEventListener('click', () => {
         alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
     }
 })
-
+/*leader board*/
 
 /*game*/
 let temp = document.querySelector("#toGame");

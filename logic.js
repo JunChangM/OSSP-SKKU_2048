@@ -1,27 +1,27 @@
 /*leader board*/
 
-function refresh_lb() {
+function store_lb() {
     let sum = 0;
     for (let i=0; i<4; i++)
         for (let j=0; j<4; j++)
-            sum += (boardArray[i][j] + 1) * 2;
+            if (boardArray[i][j] !== -1)
+            sum += Math.pow(2, (boardArray[i][j] + 1));
     
     let user_name = localStorage.getItem("user");
-    if (localStorage.getItem(user_name) !== null) {
-        if (parseInt(localStorage.getItem(user_name) < sum))
-            localStorage.setItem(user_name, sum);
+    if (localStorage.getItem("lb" + user_name) !== null) {
+        if (parseInt(localStorage.getItem("lb" + user_name)) < sum)
+            localStorage.setItem("lb" + user_name, sum);
     }
     else {
-        localStorage.setItem(user_name, sum);
+        localStorage.setItem("lb" + user_name, sum);
     }
-    update_lb();
 }
 
 function update_lb() {
     let score_ary = Array(), cnt = 0;
     for (let i=0; i<localStorage.length; i++) {
         let key = localStorage.key(i);
-        if (key !== "user") {
+        if (key.substring(0, 2) === "lb") {
             score_ary.push(Array(key, localStorage.getItem(key)));
             cnt++;
         }
@@ -35,7 +35,7 @@ function update_lb() {
     })
 
     for (let i=1; i<=((cnt < 7) ? cnt : 7); i++) {
-        document.getElementById("name" + i.toString()).innerHTML = score_ary[i-1][0];
+        document.getElementById("name" + i.toString()).innerHTML = score_ary[i-1][0].substring(2);
         document.getElementById("score" + i.toString()).innerHTML = score_ary[i-1][1];
     }
 }
@@ -64,6 +64,8 @@ document.addEventListener('keydown', (ev) => {
             break;
         case 40: // down
             moveCell(0, 1, 0);
+            break;
+        default:
             break;
     }
     updateChange();
@@ -229,6 +231,7 @@ function updateChange() {
     // game clear
     if (isClear === true) {
         alert("축하합니다!\n명륜이는 여행을 떠날 준비를 마쳤습니다!");
+        store_lb();
         return;
     }
 
@@ -249,16 +252,16 @@ function updateChange() {
 function moveCell(dx, dy, flag)
 {
     // flag = 0: 상하, flag = 1: 좌우
-    let st_X = (dx === 1) ? 3 : 0;
-    let st_Y = (dy === 1) ? 3 : 0;
+    let st_X = ((dx === 1) ? 3 : 0);
+    let st_Y = ((dy === 1) ? 3 : 0);
     let X = st_X;
     let Y = st_Y;
     let target_X = st_X;
     let target_Y = st_Y;
     let isMoved = false;
 
-    dx = (flag) ? -dx : 0;
-    dy = (flag) ? 0 : -dy;
+    dx = ((flag) ? -dx : 0);
+    dy = ((flag) ? 0 : -dy);
     for (let i=0; i<4; i++) {
         while ((0 <= Y && Y <= 3) && (0 <= X && X <= 3)) {
             if (boardArray[Y][X] !== -1) {
@@ -295,10 +298,10 @@ function moveCell(dx, dy, flag)
             Y += dy;
             isMoved = false;
         }
-        X = (flag) ? st_X : i+1;
-        Y = (flag) ? i+1 : st_Y;
-        target_X = (flag) ? st_X : i+1;
-        target_Y = (flag) ? i+1 : st_Y;
+        X = ((flag) ? st_X : i+1);
+        Y = ((flag) ? i+1 : st_Y);
+        target_X = ((flag) ? st_X : i+1);
+        target_Y = ((flag) ? i+1 : st_Y);
     }
 }
 

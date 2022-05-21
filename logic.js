@@ -19,6 +19,9 @@ login.addEventListener('click', () => {
             errStack ++;
         }
     }
+    else if(id.value == 'lb_name'){
+        alert('사용자 변수입니다. 다른 아이디를 입력해주세요.');
+    }
     else if (lastpassword == password.value) {
         alert(`${id.value}님 로그인 되었습니다. 재방문을 환영합니다.`);
         localStorage.removeItem("user");

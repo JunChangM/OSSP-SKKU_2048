@@ -66,7 +66,7 @@ function refresh_lb() {
 function update_lb() {
     let lb_cnt = 0;
     for (let i=0; i<localStorage.length; i++)
-        if (localStorage.key(i).substring(0, 3) === "lb")
+        if (localStorage.key(i).substring(0, 2) === "lb")
             lb_cnt++;
     
     lb_cnt = (lb > 7) ? 7 : lb_cnt;

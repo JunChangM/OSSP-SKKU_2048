@@ -38,7 +38,46 @@ login.addEventListener('click', () => {
         alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
     }
 })
+
 /*leader board*/
+
+function refresh_lb() {
+    let sum = 0;
+    for (let i=0; i<4; i++)
+        for (let j=0; j<4; j++)
+            sum += (boardArray + 1) * 2;
+    
+    let lb_name = "lb" + lastid;
+    if (localStorage.getItem(lb_name) !== null) {
+        if (parseInt(localStorage.getItem(lb_name) < sum))
+            localStorage.setItem(lb_name, sum);
+    }
+    else {
+        localStorage.setItem(lb_name, sum);
+    }
+}
+
+function update_lb() {
+    let lb_cnt = 0;
+    for (let i=0; i<localStorage.length; i++)
+        if (localStorage.key(i).substring(0, 3) === "lb")
+            lb_cnt++;
+    
+    lb_cnt = (lb > 7) ? 7 : lb_cnt;
+    let target_val, cmp_val, saved_name = null, saved_score = -1;
+    for (let i=0; i<lb_cnt; i++) {
+        target_val = document.getElementById("score" + (i+1).toString()).innerText;
+        target_val = (target_val === "") ? "0" :target_val;
+        
+        cmp_val = (saved_score === -1) ? parseInt(localStorage.getItem("lb" + lastid)) : saved_score;
+        if (parseInt(target_val) < cmp_val) {
+            saved_name = document.getElementById("name" + (i+1).toString()).innerText;
+            saved_score = parseInt(target_val);
+            document.getElementById("name" + (i+1).toString()).innerText = ((saved_name === null) ? lastid : saved_name);
+            document.getElementById("score" + (i+1).toString()).innerText = cmp_val.toString();
+        }
+    }
+}
 
 /*index*/
 

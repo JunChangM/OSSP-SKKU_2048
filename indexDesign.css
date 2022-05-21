@@ -6,12 +6,12 @@ body {
 }
 
 .container {
-    font-family: 'HSYuji-Regular';
+    font-family: 'GangwonEduPowerExtraBoldA';
     padding-top: 80px;
 }
 
 .row {
-    font-family: 'HSYuji-Regular';
+    font-family: 'GangwonEduPowerExtraBoldA';
 }
 
 .row .btn_row {
@@ -69,6 +69,12 @@ body{
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* 임시로 구역 색깔 입힘 */
 #leftDiv {
@@ -82,7 +88,11 @@ body{
 
 #rightDiv {
     background-color: gold;
-    margin-top:45px;
+    text-align: center;
+    width: 620px;
+    height: 620px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* INDEX.HTML STYLE ENDS */
@@ -116,14 +126,11 @@ body{
 
 /* login.html*/
 .loginmain {
-    width: 300px;
-    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
+    margin: auto 0;
 }
 .logo {
     margin-top: 0px;
@@ -149,4 +156,38 @@ body{
     border-color: transparent;
     margin-top: 45px;
 
+}
+
+/* LOGIN.HTML STYLE ENDS */
+
+/* GAMEINFO.HTML STYLE */
+
+
+
+.toReturn {
+    margin-top: 15px;
+    margin-left: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-color:white;
+    background-color: rgba(7, 42, 96, 1);
+    border-radius: 15px; 
+    
+    /* font settings */
+    font-family: 'HSYuji-Regular';
+    color:aliceblue;
+    font-size: 15px;
+}
+
+.info strong{
+    padding-top: 30px;
+    padding-left: 100px;
+}
+
+.info a {
+    margin-top: 12px;
+    padding-left: 100px;
+    padding-bottom: 45px;
 }

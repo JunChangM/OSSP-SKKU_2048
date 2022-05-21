@@ -89,6 +89,7 @@ body{
 
 #rightDiv {
     background-color: #b4d56d;
+
     text-align: center;
     width: 620px;
     height: 620px;
@@ -96,6 +97,9 @@ body{
     margin-right: 10px;
     border-radius:15px;
     margin-left: 3rem;
+    background: url("./images/university.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 /* MAIN.HTML STYLE ENDS */

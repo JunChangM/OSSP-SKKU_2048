@@ -19,7 +19,7 @@ login.addEventListener('click', () => {
             errStack ++;
         }
     }
-    else if(id.value == 'lb_name'){
+    else if(id.value.substring(0, 2) === "lb"){
         alert('사용자 변수입니다. 다른 아이디를 입력해주세요.');
     }
     else if (lastpassword == password.value) {

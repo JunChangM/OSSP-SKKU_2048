@@ -7,7 +7,8 @@ let errStack = 0;
 
 
 login.addEventListener('click', () => {
-    lastid = JSON.parse(id.value);
+    lastid = id.value;
+    
     const lastpassword = localStorage.getItem(lastid);
 
     if (id.value == 'user') {
@@ -27,8 +28,8 @@ login.addEventListener('click', () => {
     }
     else {
         alert('없는 계정입니다. 아이디를 새로 생성합니다.');
-        textid = JSON.parse(id.value); 
-        textpw = JSON.parse(password.value); 
+        textid = id.value; 
+        textpw = password.value; 
         localStorage.setItem(textid, textpw);
         window.location.replace("index.html");
     }

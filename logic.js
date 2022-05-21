@@ -68,7 +68,6 @@ document.addEventListener('keydown', (ev) => {
         default:
             break;
     }
-    updateChange();
 });
 
 // Initialization
@@ -303,6 +302,7 @@ function moveCell(dx, dy, flag)
         target_X = ((flag) ? st_X : i+1);
         target_Y = ((flag) ? i+1 : st_Y);
     }
+    updateChange();
 }
 
 // create img of cell (eg.100원)

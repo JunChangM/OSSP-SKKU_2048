@@ -5,10 +5,6 @@ const password = document.getElementById('password')
 const login = document.getElementById('login')
 let errStack = 0;
 
-function loginlocalstorage(loginid){
-
-}
-
 login.addEventListener('click', () => {
     lastid = id.value;
     const lastpassword = localStorage.getItem(lastid);
@@ -53,7 +49,7 @@ function refresh_lb() {
         for (let j=0; j<4; j++)
             sum += (boardArray + 1) * 2;
     
-    let lb_name = "lb" + lastid;
+    let lb_name = "lb" + localStorage.getItem("user");
     if (localStorage.getItem(lb_name) !== null) {
         if (parseInt(localStorage.getItem(lb_name) < sum))
             localStorage.setItem(lb_name, sum);
@@ -61,6 +57,7 @@ function refresh_lb() {
     else {
         localStorage.setItem(lb_name, sum);
     }
+    update_lb();
 }
 
 function update_lb() {
@@ -70,16 +67,17 @@ function update_lb() {
             lb_cnt++;
     
     lb_cnt = (lb > 7) ? 7 : lb_cnt;
+    let user_id = localStorage.getItem("user");
     let target_val, cmp_val, saved_name = null, saved_score = -1;
     for (let i=0; i<lb_cnt; i++) {
         target_val = document.getElementById("score" + (i+1).toString()).innerText;
         target_val = (target_val === "") ? "0" :target_val;
         
-        cmp_val = (saved_score === -1) ? parseInt(localStorage.getItem("lb" + lastid)) : saved_score;
+        cmp_val = (saved_score === -1) ? parseInt(localStorage.getItem("lb" + user_id)) : saved_score;
         if (parseInt(target_val) < cmp_val) {
             saved_name = document.getElementById("name" + (i+1).toString()).innerText;
             saved_score = parseInt(target_val);
-            document.getElementById("name" + (i+1).toString()).innerText = ((saved_name === null) ? lastid : saved_name);
+            document.getElementById("name" + (i+1).toString()).innerText = ((saved_name === null) ? user_id : saved_name);
             document.getElementById("score" + (i+1).toString()).innerText = cmp_val.toString();
         }
     }

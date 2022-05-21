@@ -1,4 +1,4 @@
-/*login.html*/
+/*index.html*/
 
 const id = document.getElementById('id')
 const password = document.getElementById('password')
@@ -79,19 +79,19 @@ function update_lb() {
     }
 }
 
-/*index*/
+/*main.html*/
 
-// let temp = document.querySelector("#toGame");
-// temp.addEventListener("click",  () => {
-//     console.log("Button Clicked");
-// });
+let temp = document.querySelector("#toGame");
+temp.addEventListener("click",  () => {
+    console.log("Button Clicked");
+});
 
 // game.html
 // game.html
 // game.html
 
-// image priority
-let imgPriorityArray = ["coin_100", "coin_500", "bill_1000", "bill_5000", "bill_10000", "bill_50000"];
+// image priority (11 classes)
+let imgPriorityArray = ["coin_100", "coin_500", "bill_1000", "bill_5000", "bill_10000", "bill_50000", "carrier", "hotel", "plane_ticket", "SKKUchar", "plane"];
 
 let boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
 
@@ -122,10 +122,12 @@ function init() {
 }
 
 let isClear = false;
+let isGameOver = false;
 // 변화 업데이트 (move에만 관련...이었던)
 function updateChange() {
 
     if (isClear === true) return; // 깼으면 업뎃 안함
+    else if (isGameOver === true) return; // gameover => 업뎃 안함
     // delete
     for (let i = 0; i <= 3; i++) {
         for (let j = 0; j <= 3; j++) {
@@ -169,27 +171,22 @@ function updateChange() {
                 break;
             
             case imgPriorityArray[6]:
-                img.src = "images/bill_50000.png";
+                img.src = "images/carrier.png";
                 break;
             
             case imgPriorityArray[7]:
-                img.src = "images/bill_50000.png";
+                img.src = "images/hotel.png";
                 break;
             
             case imgPriorityArray[8]:
-                img.src = "images/bill_50000.png";
+                img.src = "images/plane_ticket.png";
                 break;
             
             case imgPriorityArray[9]:
-                img.src = "images/bill_50000.png";
+                img.src = "images/SKKUchar.png";
                 break;
-            
             case imgPriorityArray[10]:
-                img.src = "images/bill_50000.png";
-                break;
-            
-            case imgPriorityArray[11]:
-                img.src = "images/bill_50000.png";
+                img.src = "images/plane.png";
                 isClear = true;
                 break;
             }
@@ -199,15 +196,20 @@ function updateChange() {
 
     // game clear
     if (isClear === true) {
-
+        alert("축하합니다!\n명륜이는 여행을 떠날 준비를 마쳤습니다!");
+        return;
     }
 
     // check gameover
-
+    isGameOver = checkGameOver();
     // if yes
-
-    // if not over
-    createImg();
+    if (isGameOver === true) {
+        alert("아쉽게도 명륜이는 모종의 이유로 여행을 떠날 수 없게 되었습니다...");
+        return;
+    }
+    // if not over and not full
+    if (checkIsFull() === false)
+        createImg();
 }
 
 
@@ -308,6 +310,39 @@ function createImg()
     randomCell.appendChild(imgElement);
 }
 
+// checking gameover functions, true if gameover
+function checkGameOver()
+{
+    if (checkIsFull() === false)
+        return false;
+    for (let i = 0 ; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (boardArray[i][j] === boardArray[i][j+1])
+                return false;
+        }
+    }
+    for (let i = 0 ; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (boardArray[i][j] === boardArray[i+1][j])
+                return false;
+        }
+    }
+    return true;
+}
+function checkIsFull()
+{
+    for (let i = 0 ; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (boardArray[i][j] === -1) 
+                return false;
+        }
+    }
+    return true;
+}
 // execution area
 
 init();
+
+// game.html ends
+// game.html ends
+// game.html ends

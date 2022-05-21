@@ -88,12 +88,15 @@ body{
 }
 
 #rightDiv {
-    background-color: gold;
+
     text-align: center;
     width: 620px;
     height: 620px;
     margin-left: 10px;
     margin-right: 10px;
+    background: url("./images/university.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 /* INDEX.HTML STYLE ENDS */

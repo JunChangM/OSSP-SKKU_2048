@@ -1,5 +1,6 @@
 /*leader board*/
 
+// Calculate the score sum and store it in localStorage
 function store_lb() {
     let sum = 0;
     for (let i=0; i<4; i++)
@@ -7,6 +8,7 @@ function store_lb() {
             if (boardArray[i][j] !== -1)
                 sum += Math.pow(2, (boardArray[i][j] + 1));
     
+    // stored in a format like "lbmyID".
     let user_name = localStorage.getItem("user");
     if (localStorage.getItem("lb" + user_name) !== null) {
         if (parseInt(localStorage.getItem("lb" + user_name)) < sum)
@@ -17,6 +19,7 @@ function store_lb() {
     }
 }
 
+// Update leader board
 function update_lb() {
     let score_ary = Array(), cnt = 0;
     for (let i=0; i<localStorage.length; i++) {
@@ -27,6 +30,7 @@ function update_lb() {
         }
     }
 
+    // sort in descending order
     score_ary.sort(function(a, b) {
         let num_a = parseInt(a[1]), num_b = parseInt(b[1]);
         if (num_a > num_b) return -1;
@@ -253,33 +257,39 @@ function updateChange() {
         createImg();
 }
 
-
-
+// Check whether the cell is moveable or not and move it
+// flag = 0: 상하, flag = 1: 좌우
 function moveCell(dx, dy, flag)
 {
-    // flag = 0: 상하, flag = 1: 좌우
+    let isMoved = false;
+    // 기준 X, Y 저장
     let st_X = ((dx === 1) ? 3 : 0);
     let st_Y = ((dy === 1) ? 3 : 0);
     let X = st_X;
     let Y = st_Y;
+    // 셀을 이동시킬 좌표
     let target_X = st_X;
     let target_Y = st_Y;
-    let isMoved = false;
 
+    // 탐색이 위에서부터가 아닌 밑(기준)에서부터 탐색하며 올라오므로
     dx = ((flag) ? -dx : 0);
     dy = ((flag) ? 0 : -dy);
+
     for (let i=0; i<4; i++) {
         while ((0 <= Y && Y <= 3) && (0 <= X && X <= 3)) {
             if (boardArray[Y][X] !== -1) {
                 let k = 1;
                 while ((0 <= Y + k*dy && Y + k*dy <= 3) && (0 <= X + k*dx && X + k*dx <= 3)) {
                     if (boardArray[Y + k*dy][X + k*dx] !== -1) {
+                        // 이동시킨 후에 인접한 두 셀이 합칠 수 있는 경우
                         if (boardArray[Y][X] === boardArray[Y + k*dy][X + k*dx]) {
                             boardArray[target_Y][target_X] = boardArray[Y][X] + 1;
+                            // 이동 시키려는 셀이 이동하지 않은 경우 -1로 갱신 X
                             if (!(target_X == X && target_Y == Y)) 
                                 boardArray[Y][X] = -1;
                             boardArray[Y + k*dy][X + k*dx] = -1;
                         }
+                        // 합칠 수 없는 경우
                         else {
                             boardArray[target_Y][target_X] = boardArray[Y][X];
                             if (!(target_X == X && target_Y == Y)) 
@@ -292,6 +302,7 @@ function moveCell(dx, dy, flag)
                     }
                     k++;
                 }
+                // 탐색 중인 라인에 셀이 하나만 있었던 경우
                 if (!isMoved) {
                     boardArray[target_Y][target_X] = boardArray[Y][X];
                     if (!(target_X == X && target_Y == Y)) 
@@ -304,6 +315,7 @@ function moveCell(dx, dy, flag)
             Y += dy;
             isMoved = false;
         }
+        // 다음 기준 위치로 초기화 or 이동
         X = ((flag) ? st_X : i+1);
         Y = ((flag) ? i+1 : st_Y);
         target_X = ((flag) ? st_X : i+1);

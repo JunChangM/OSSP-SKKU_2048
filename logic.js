@@ -389,9 +389,7 @@ function checkIsFull()
     }
     return true;
 }
-// execution area
 
-init();
 // refresh button event listener
 document.getElementById("refreshGame").addEventListener("click", () => {
     boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];

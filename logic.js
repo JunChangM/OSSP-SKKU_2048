@@ -8,7 +8,7 @@ function store_lb() {
             if (boardArray[i][j] !== -1)
                 sum += Math.pow(2, (boardArray[i][j] + 1));
     
-    // stored in a format like "lbmyID".
+    // "myID" stored in a format like "lbmyID".
     let user_name = localStorage.getItem("user");
     if (localStorage.getItem("lb" + user_name) !== null) {
         if (parseInt(localStorage.getItem("lb" + user_name)) < sum)

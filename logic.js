@@ -245,6 +245,7 @@ function updateChange() {
     // if yes
     if (isGameOver === true) {
         alert("아쉽게도 명륜이는 모종의 이유로 여행을 떠날 수 없게 되었습니다...");
+        store_lb();
         return;
     }
     // if not over and not full

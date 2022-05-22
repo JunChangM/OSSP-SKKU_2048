@@ -52,6 +52,15 @@
             let errStack = 0;
 
             login.addEventListener('click', () => {
+                try_login();
+            })
+
+            password.addEventListener('keyup', (e) => {
+                if (e.code === 'Enter')
+                    try_login();
+            })
+
+            function try_login() {
                 lastid = id.value;
                 const lastpassword = localStorage.getItem(lastid);
 
@@ -88,7 +97,7 @@
                 if (errStack >= 5) {
                     alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
                 }
-            })
+            }
         </script>
     </body>
 </html>

@@ -72,14 +72,14 @@ document.addEventListener('keydown', (ev) => {
 
 // Initialization
 function init() {
-    createImg();
-    createImg();
     // stack
     acquiredImg[0] = true;
     let newImage = document.createElement("img");
     newImage.classList.add("items", "stackItems");
     newImage.src = "images/coin_100.png";
     stack.appendChild(newImage);
+    createImg();
+    createImg();
 }
 
 let isClear = false;
@@ -129,7 +129,7 @@ function updateChange() {
                     acquiredImg[1] = true;
                     let newImage = document.createElement("img");
                     newImage.classList.add("items", "stackItems");
-                    newImage.src = img.src;
+                    newImage.src = "images/coin_500_lighter.png";
                     stack.appendChild(newImage);
                 }
                 break;

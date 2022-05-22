@@ -394,8 +394,6 @@ function checkIsFull()
     }
     return true;
 }
-// execution area
-init();
 
 // refresh button event listener
 document.getElementById("refreshGame").addEventListener("click", () => {

@@ -33,6 +33,7 @@
 + This function simply checks the conditions of gameover: (1)board is full (2) there is no remaining elements to merge. 
 7. checkIsFull()
 + Checks if the board is full by looping through the board.
+
 #### In lb.html(leaderboard)
 5.
 +

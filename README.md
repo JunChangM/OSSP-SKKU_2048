@@ -15,8 +15,8 @@
 
 ## Precautions
 + In login, as a test account ID, 'user' cannot be used 
-+ In login, Don't use an ID that starts with an lb because lb is used for leader boards.
-+ Because the program contents are stored in local storage, it may not work externally.
++ In login, Don't use an ID that starts with 'lb'.
++ Because program data is stored in local storage, data (i.e. ID, score) may not be loaded externally.
 
 ------
 

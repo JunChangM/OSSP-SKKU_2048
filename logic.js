@@ -5,7 +5,7 @@ function store_lb() {
     for (let i=0; i<4; i++)
         for (let j=0; j<4; j++)
             if (boardArray[i][j] !== -1)
-            sum += Math.pow(2, (boardArray[i][j] + 1));
+                sum += Math.pow(2, (boardArray[i][j] + 1));
     
     let user_name = localStorage.getItem("user");
     if (localStorage.getItem("lb" + user_name) !== null) {

@@ -21,9 +21,17 @@ body {
     padding-bottom: 30px;
     margin : 40px;
 }
+
 body{
     margin: 0;
 }
+
+button {
+    padding-top: 12px !important;
+    display: inline-block;
+    align-items: flex-start;
+}
+
 /* #toGame under .row */
 /* 오른쪽 버튼 4개 설정 */
 .row .toGame {
@@ -108,7 +116,13 @@ body{
 /* GAME STYLE */
 /* GAME STYLE */
 
+i {
+    display: flex;
+    align-items: center;
+}
+
 #returnButtonGame {
+    padding-bottom: 12px !important;
     border-radius: 15px;
     aspect-ratio: 1.2;
 }   
@@ -220,7 +234,6 @@ body{
 /* GAMEINFO.HTML STYLE */
 
 
-
 .toReturn {
     margin-top: 15px;
     margin-left: 15px;
@@ -236,6 +249,10 @@ body{
     font-family: 'GangwonEduPowerExtraBoldA';
     color:aliceblue;
     font-size: 15px;
+}
+
+.info {
+    padding-top: 48px;
 }
 
 .info strong{

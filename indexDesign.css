@@ -65,7 +65,7 @@ body{
 
 /* 웹폰트 아무거나 추가 */
 @font-face {
-    font-family: 'HSYuji-Regular';
+    font-family: 'GangwonEduPowerExtraBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -233,7 +233,7 @@ body{
     border-radius: 15px; 
     
     /* font settings */
-    font-family: 'HSYuji-Regular';
+    font-family: 'GangwonEduPowerExtraBoldA';
     color:aliceblue;
     font-size: 15px;
 }

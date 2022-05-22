@@ -76,7 +76,7 @@ function init() {
     acquiredImg[0] = true;
     let newImage = document.createElement("img");
     newImage.classList.add("items", "stackItems");
-    newImage.src = "images/coin_100.png";
+    newImage.src = "images/coin_100_lighter.png";
     stack.appendChild(newImage);
     createImg();
     createImg();
@@ -119,7 +119,7 @@ function updateChange() {
                     acquiredImg[0] = true;
                     let newImage = document.createElement("img");
                     newImage.classList.add("items", "stackItems");
-                    newImage.src = img.src;
+                    newImage.src = "images/coin_100_lighter.png";
                     stack.appendChild(newImage);
                 }
                 break;
@@ -139,7 +139,7 @@ function updateChange() {
                     acquiredImg[2] = true;
                     let newImage = document.createElement("img");
                     newImage.classList.add("items", "stackItems");
-                    newImage.src = img.src;
+                    newImage.src = "images/bill_1000_lighter.png";
                     stack.appendChild(newImage);
                 }
                 break;
@@ -150,7 +150,7 @@ function updateChange() {
                     acquiredImg[3] = true;
                     let newImage = document.createElement("img");
                     newImage.classList.add("items", "stackItems");
-                    newImage.src = img.src;
+                    newImage.src = "images/bill_5000_lighter.png";
                     stack.appendChild(newImage);
                 }
                 break;
@@ -160,7 +160,7 @@ function updateChange() {
                     acquiredImg[4] = true;
                     let newImage = document.createElement("img");
                     newImage.classList.add("items", "stackItems");
-                    newImage.src = img.src;
+                    newImage.src = "images/bill_10000_lighter.png";
                     stack.appendChild(newImage);
                 }
                 break;
@@ -170,7 +170,7 @@ function updateChange() {
                     acquiredImg[5] = true;
                     let newImage = document.createElement("img");
                     newImage.classList.add("items", "stackItems");
-                    newImage.src = img.src;
+                    newImage.src = "images/bill_50000_lighter.png";
                     stack.appendChild(newImage);
                 }
                 break;
@@ -344,7 +344,7 @@ function createImg()
             acquiredImg[1] = true;
             let newImage = document.createElement("img");
             newImage.classList.add("items", "stackItems");
-            newImage.src = imgElement.src;
+            newImage.src = "images/coin_500_lighter.png";
             stack.appendChild(newImage);
         }
 
@@ -409,7 +409,7 @@ document.getElementById("refreshGame").addEventListener("click", () => {
     acquiredImg = [true, false, false, false, false, false, false, false, false, false, false];
     let newImage = document.createElement("img");
     newImage.classList.add("items", "stackItems");
-    newImage.src = "images/coin_100.png";
+    newImage.src = "images/coin_100_lighter.png";
     stack.appendChild(newImage);
 
     isClear = false;

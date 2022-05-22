@@ -73,6 +73,12 @@ document.addEventListener('keydown', (ev) => {
 function init() {
     createImg();
     createImg();
+    // stack
+    acquiredImg[0] = true;
+    let newImage = document.createElement("img");
+    newImage.classList.add("items", "stackItems");
+    newImage.src = "images/coin_100.png";
+    stack.appendChild(newImage);
 }
 
 let isClear = false;
@@ -168,7 +174,7 @@ function updateChange() {
                 }
                 break;
             case imgPriorityArray[6]:
-                img.src = "images/carrier.png";
+                img.src = "images/mycarrier.png";
                 if (acquiredImg[6] === false) {
                     acquiredImg[6] = true;
                     let newImage = document.createElement("img");
@@ -179,7 +185,7 @@ function updateChange() {
                 break;
             
             case imgPriorityArray[7]:
-                img.src = "images/hotel.png";
+                img.src = "images/myhouse.png";
                 if (acquiredImg[7] === false) {
                     acquiredImg[7] = true;
                     let newImage = document.createElement("img");
@@ -190,7 +196,7 @@ function updateChange() {
                 break;
             
             case imgPriorityArray[8]:
-                img.src = "images/plane_ticket.png";
+                img.src = "images/myplaneticket.png";
                 if (acquiredImg[8] === false) {
                     acquiredImg[8] = true;
                     let newImage = document.createElement("img");
@@ -201,7 +207,7 @@ function updateChange() {
                 break;
             
             case imgPriorityArray[9]:
-                img.src = "images/SKKUchar.png";
+                img.src = "images/mySKKUchar.png";
                 if (acquiredImg[9] === false) {
                     acquiredImg[9] = true;
                     let newImage = document.createElement("img");
@@ -211,7 +217,7 @@ function updateChange() {
                 }
                 break;
             case imgPriorityArray[10]:
-                img.src = "images/plane.png";
+                img.src = "images/myplane.png";
                 if (acquiredImg[10] === false) {
                     acquiredImg[10] = true;
                     let newImage = document.createElement("img");
@@ -329,7 +335,15 @@ function createImg()
         // 500원
         imgElement.src = "images/coin_500.png";
         imgElement.classList.add("coin_500");
-        
+
+        if (acquiredImg[1] === false) {
+            acquiredImg[1] = true;
+            let newImage = document.createElement("img");
+            newImage.classList.add("items", "stackItems");
+            newImage.src = imgElement.src;
+            stack.appendChild(newImage);
+        }
+
         boardArray[randomCellNumX][randomCellNumY] = 1;
     }
     else {
@@ -388,7 +402,12 @@ document.getElementById("refreshGame").addEventListener("click", () => {
     {
         stack2.removeChild(stack2.firstElementChild);
     }
-    acquiredImg = [false, false, false, false, false, false, false, false, false, false, false];
+    acquiredImg = [true, false, false, false, false, false, false, false, false, false, false];
+    let newImage = document.createElement("img");
+    newImage.classList.add("items", "stackItems");
+    newImage.src = "images/coin_100.png";
+    stack.appendChild(newImage);
+
     isClear = false;
     isGameOver = false;
     updateChange();

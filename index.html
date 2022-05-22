@@ -65,6 +65,10 @@
             function try_login() {
                 lastid = id.value;
                 const lastpassword = localStorage.getItem(lastid);
+                if (errStack >= 5) {
+                    alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
+                    return;
+                }
 
                 if (id.value == 'user') {
                     if (password.value == '0000') {
@@ -73,20 +77,13 @@
                     }
                     else {
                         alert('비밀번호를 다시 입력해주세요.');
-                        errStack ++;
+                        errStack++;
                     }
                 }
                 else if(id.value.substring(0, 2) === "lb"){
                     alert('사용자 변수입니다. 다른 아이디를 입력해주세요.');
                 }
-                else if (lastpassword == password.value) {
-                    alert(`${id.value}님 로그인 되었습니다. 재방문을 환영합니다.`);
-                    localStorage.removeItem("user");
-                    localStorage.setItem("user",id.value);
-                    window.location.replace("main.html");
-
-                }
-                else {
+                else if (lastpassword === null){
                     alert('없는 계정입니다. 아이디를 새로 생성합니다.');
                     textid = id.value; 
                     textpw = password.value; 
@@ -95,9 +92,15 @@
                     localStorage.setItem("user",textid);
                     window.location.replace("main.html");
                 }
-
-                if (errStack >= 5) {
-                    alert('비밀번호를 5회 이상 틀리셨습니다. 잠시후 시도해주세요.');
+                else if (lastpassword === password.value) {
+                    alert(`${id.value}님 로그인 되었습니다. 재방문을 환영합니다.`);
+                    localStorage.removeItem("user");
+                    localStorage.setItem("user",id.value);
+                    window.location.replace("main.html");
+                }
+                else {
+                    alert('비밀번호를 다시 입력해주세요.');
+                    errStack++;
                 }
             }
         </script>

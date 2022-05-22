@@ -46,7 +46,8 @@ function update_lb() {
 
 // image priority (11 classes)
 let imgPriorityArray = ["coin_100", "coin_500", "bill_1000", "bill_5000", "bill_10000", "bill_50000", "carrier", "hotel", "plane_ticket", "SKKUchar", "plane"];
-let acquiredImg = [false, false, false, false, false, false, false, false, false, false, false];
+// array of boolean values which determines addition of image on the right .stack div
+let acquiredImg = [false, false, false, false, false, false, false, false, false, false, false]; 
 let boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
 
 // Keyboard Input Handle
@@ -72,24 +73,27 @@ document.addEventListener('keydown', (ev) => {
 
 // Initialization
 function init() {
-    // stack
+    // add coin_100 image to .stack div
+    // to prevent reverse addition (e.g. 500 first, 100 second)
     acquiredImg[0] = true;
     let newImage = document.createElement("img");
     newImage.classList.add("items", "stackItems");
     newImage.src = "images/coin_100_lighter.png";
     stack.appendChild(newImage);
+
+    // create image "twice"
     createImg();
     createImg();
 }
 
 let isClear = false;
 let isGameOver = false;
-// 변화 업데이트 (move에만 관련...이었던)
+// 변화 업데이트 (called inside moveCell and restart eventlistener)
 function updateChange() {
 
-    if (isClear === true) return; // 깼으면 업뎃 안함
-    else if (isGameOver === true) return; // gameover => 업뎃 안함
-    // delete
+    if (isClear === true) return; // 깼으면 업데이트 안 함
+    else if (isGameOver === true) return; // gameover => 업데이트 안 함
+    // delete all images in the visual board
     for (let i = 0; i <= 3; i++) {
         for (let j = 0; j <= 3; j++) {
             let tempStr = "";
@@ -99,22 +103,23 @@ function updateChange() {
                 cellObject.removeChild(imgChild);
         }
     }
-    // add
+    // add images (status info of the result of last user move)
     let stack = document.getElementById("stack");
     let stack2 = document.getElementById("stack2");
     for (let i = 0; i <= 3; i++) {
         for (let j = 0; j <= 3; j++) {
-            if (boardArray[i][j] === -1) continue;
+            if (boardArray[i][j] === -1) continue; // if image is not set, pass
             let imgClass = imgPriorityArray[boardArray[i][j]];
             let tempStr = "";
             let cellObject = document.getElementById(tempStr.concat(i.toString(), j.toString()));
             
             let img = document.createElement("img");
-            img.classList.add(imgClass, "items");
+            img.classList.add(imgClass, "items"); // class .items provides style options
             switch (imgClass)
             {
             case imgPriorityArray[0]:
                 img.src = "images/coin_100.png";
+                // image is added on stack if not added yet
                 if (acquiredImg[0] === false) {
                     acquiredImg[0] = true;
                     let newImage = document.createElement("img");
@@ -226,7 +231,7 @@ function updateChange() {
                     newImage.src = img.src;
                     stack2.appendChild(newImage);
                 }
-                isClear = true;
+                isClear = true; // game clear
                 break;
             }
             cellObject.appendChild(img)
@@ -236,16 +241,16 @@ function updateChange() {
     // game clear
     if (isClear === true) {
         alert("축하합니다!\n명륜이는 여행을 떠날 준비를 마쳤습니다!");
-        store_lb();
+        store_lb(); // records in leaderboard
         return;
     }
 
     // check gameover
     isGameOver = checkGameOver();
-    // if yes
+    // if gameover
     if (isGameOver === true) {
         alert("아쉽게도 명륜이는 모종의 이유로 여행을 떠날 수 없게 되었습니다...");
-        store_lb();
+        store_lb(); // records in leaderboard
         return;
     }
     // if not over and not full
@@ -348,14 +353,14 @@ function createImg()
             stack.appendChild(newImage);
         }
 
-        boardArray[randomCellNumX][randomCellNumY] = 1;
+        boardArray[randomCellNumX][randomCellNumY] = 1; // adds information to boardArray
     }
     else {
         // 100원
         imgElement.src = "images/coin_100.png";
         imgElement.classList.add("coin_100");
         
-        boardArray[randomCellNumX][randomCellNumY] = 0;
+        boardArray[randomCellNumX][randomCellNumY] = 0; // adds information to boardArray
     }
     randomCell.appendChild(imgElement);
 }
@@ -390,12 +395,13 @@ function checkIsFull()
     return true;
 }
 // execution area
-
 init();
+
 // refresh button event listener
 document.getElementById("refreshGame").addEventListener("click", () => {
-    boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ];
+    boardArray = [ [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1] ]; // initialize boardArray
     
+    // initialize both .stack and .stack2
     let stack = document.getElementById("stack");
     while (stack.firstElementChild)
     {
@@ -407,6 +413,7 @@ document.getElementById("refreshGame").addEventListener("click", () => {
         stack2.removeChild(stack2.firstElementChild);
     }
     acquiredImg = [true, false, false, false, false, false, false, false, false, false, false];
+    // add coin_100 by default
     let newImage = document.createElement("img");
     newImage.classList.add("items", "stackItems");
     newImage.src = "images/coin_100_lighter.png";
@@ -414,7 +421,7 @@ document.getElementById("refreshGame").addEventListener("click", () => {
 
     isClear = false;
     isGameOver = false;
-    updateChange();
+    updateChange(); // creates one element
     createImg();
 });
 // game.html ends

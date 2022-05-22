@@ -10,15 +10,13 @@
 
 ## function
 #### In index.html(Login)
-1.
-+
-2.
-+
+1. try_login()
++ Compared to the content of local storage, it is a function that allows login. If you don't have an account, create a new one
+
 #### In main.html(Main)
-3.
-+
-4.
-+
+2. window.onload = function()
++ This function displays the information of the accessed user in the upper right corner of HTML.
+
 #### In game.html(Game)
 5.
 +

@@ -8,7 +8,12 @@
 
 ------
 
-## function
+## How to Start Playing?
+> website(https://jinh-636.github.io/OSSP-SKKU_2048/index.html)
+
+------
+
+## functions
 #### In index.html(Login)
 1. try_login()
 + Compared to the content of local storage, it is a function that allows login. If you don't have an account, create a new one
@@ -18,16 +23,19 @@
 + This function displays the information of the accessed user in the upper right corner of HTML.
 
 #### In game.html(Game)
-3.
-+
-4.
-+
-#### In lb.html(leaderboard)
-5. update_lb()
-+ This function updates the leaderboard with the top 7 IDs and scores stored in localStorage.
+3. init()
++ This init() function is called when the user enter the website. Creates two Images and add proper images to the right section.
+4. updateChange()
++ This function updates all changes provoked by the user. Applies all changes visually, and add proper images to the right section if needed. Checks if game is clear, as well as gameover conditions. Creates a new image before the function ends.
+5. createImg()
++ This function randomly creates a new img : coin_100 (90%) and coin_500 (10%).
+6. checkGameOver()
++ This function simply checks the conditions of gameover: (1)board is full (2) there is no remaining elements to merge. 
+7. checkIsFull()
++ Checks if the board is full by looping through the board.
 
-#### In gameinfo.html(Other Game)
-6.
+#### In lb.html(leaderboard)
+5.
 +
-7.
+6.
 +

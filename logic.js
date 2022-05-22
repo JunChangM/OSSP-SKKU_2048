@@ -1,42 +1,42 @@
 /*leader board*/
 
-function refresh_lb() {
+function store_lb() {
     let sum = 0;
     for (let i=0; i<4; i++)
         for (let j=0; j<4; j++)
-            sum += (boardArray + 1) * 2;
+            if (boardArray[i][j] !== -1)
+            sum += Math.pow(2, (boardArray[i][j] + 1));
     
-    let lb_name = "lb" + localStorage.getItem("user");
-    if (localStorage.getItem(lb_name) !== null) {
-        if (parseInt(localStorage.getItem(lb_name) < sum))
-            localStorage.setItem(lb_name, sum);
+    let user_name = localStorage.getItem("user");
+    if (localStorage.getItem("lb" + user_name) !== null) {
+        if (parseInt(localStorage.getItem("lb" + user_name)) < sum)
+            localStorage.setItem("lb" + user_name, sum);
     }
     else {
-        localStorage.setItem(lb_name, sum);
+        localStorage.setItem("lb" + user_name, sum);
     }
-    update_lb();
 }
 
 function update_lb() {
-    let lb_cnt = 0;
-    for (let i=0; i<localStorage.length; i++)
-        if (localStorage.key(i).substring(0, 2) === "lb")
-            lb_cnt++;
-    
-    lb_cnt = (lb > 7) ? 7 : lb_cnt;
-    let user_id = localStorage.getItem("user");
-    let target_val, cmp_val, saved_name = null, saved_score = -1;
-    for (let i=0; i<lb_cnt; i++) {
-        target_val = document.getElementById("score" + (i+1).toString()).innerText;
-        target_val = (target_val === "") ? "0" :target_val;
-        
-        cmp_val = (saved_score === -1) ? parseInt(localStorage.getItem("lb" + user_id)) : saved_score;
-        if (parseInt(target_val) < cmp_val) {
-            saved_name = document.getElementById("name" + (i+1).toString()).innerText;
-            saved_score = parseInt(target_val);
-            document.getElementById("name" + (i+1).toString()).innerText = ((saved_name === null) ? user_id : saved_name);
-            document.getElementById("score" + (i+1).toString()).innerText = cmp_val.toString();
+    let score_ary = Array(), cnt = 0;
+    for (let i=0; i<localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key.substring(0, 2) === "lb") {
+            score_ary.push(Array(key, localStorage.getItem(key)));
+            cnt++;
         }
+    }
+
+    score_ary.sort(function(a, b) {
+        let num_a = parseInt(a[1]), num_b = parseInt(b[1]);
+        if (num_a > num_b) return -1;
+        else if (num_a == num_b) return 0;
+        else if (num_a < num_b) return 1;
+    })
+
+    for (let i=1; i<=((cnt < 7) ? cnt : 7); i++) {
+        document.getElementById("name" + i.toString()).innerHTML = score_ary[i-1][0].substring(2);
+        document.getElementById("score" + i.toString()).innerHTML = score_ary[i-1][1];
     }
 }
 
@@ -65,8 +65,9 @@ document.addEventListener('keydown', (ev) => {
         case 40: // down
             moveCell(0, 1, 0);
             break;
+        default:
+            break;
     }
-    updateChange();
 });
 
 // Initialization
@@ -235,6 +236,7 @@ function updateChange() {
     // game clear
     if (isClear === true) {
         alert("축하합니다!\n명륜이는 여행을 떠날 준비를 마쳤습니다!");
+        store_lb();
         return;
     }
 
@@ -255,16 +257,16 @@ function updateChange() {
 function moveCell(dx, dy, flag)
 {
     // flag = 0: 상하, flag = 1: 좌우
-    let st_X = (dx === 1) ? 3 : 0;
-    let st_Y = (dy === 1) ? 3 : 0;
+    let st_X = ((dx === 1) ? 3 : 0);
+    let st_Y = ((dy === 1) ? 3 : 0);
     let X = st_X;
     let Y = st_Y;
     let target_X = st_X;
     let target_Y = st_Y;
     let isMoved = false;
 
-    dx = (flag) ? -dx : 0;
-    dy = (flag) ? 0 : -dy;
+    dx = ((flag) ? -dx : 0);
+    dy = ((flag) ? 0 : -dy);
     for (let i=0; i<4; i++) {
         while ((0 <= Y && Y <= 3) && (0 <= X && X <= 3)) {
             if (boardArray[Y][X] !== -1) {
@@ -301,11 +303,12 @@ function moveCell(dx, dy, flag)
             Y += dy;
             isMoved = false;
         }
-        X = (flag) ? st_X : i+1;
-        Y = (flag) ? i+1 : st_Y;
-        target_X = (flag) ? st_X : i+1;
-        target_Y = (flag) ? i+1 : st_Y;
+        X = ((flag) ? st_X : i+1);
+        Y = ((flag) ? i+1 : st_Y);
+        target_X = ((flag) ? st_X : i+1);
+        target_Y = ((flag) ? i+1 : st_Y);
     }
+    updateChange();
 }
 
 // create img of cell (eg.100원)

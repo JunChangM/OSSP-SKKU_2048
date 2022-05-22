@@ -225,8 +225,15 @@ body{
 
 /* GAMEINFO.HTML STYLE */
 
-
-
+.GameInfoScript {
+    font-size: x-large;
+}
+a.GameInfoScript {
+    color: #e6a294;
+}
+a.GameInfoScript:hover {
+    color: #7ecc95;
+}
 .toReturn {
     margin-top: 15px;
     margin-left: 15px;

@@ -18,17 +18,16 @@
 + This function displays the information of the accessed user in the upper right corner of HTML.
 
 #### In game.html(Game)
-5.
+3.
 +
-6.
+4.
 +
 #### In lb.html(leaderboard)
-5.
-+
-6.
-+
+5. update_lb()
++ This function updates the leaderboard with the top 7 IDs and scores stored in localStorage.
+
 #### In gameinfo.html(Other Game)
-5.
-+
 6.
++
+7.
 +

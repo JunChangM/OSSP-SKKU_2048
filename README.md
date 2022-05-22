@@ -35,7 +35,11 @@
 + Checks if the board is full by looping through the board.
 
 #### In lb.html(leaderboard)
-5.
-+
-6.
-+
+8. update_lb()
++ This function updates the leaderboard with the top 7 IDs and scores stored in localStorage.
+
+------
+## Precautions
++ In login, as a test account ID, 'user' cannot be used 
++ In login, Don't use an ID that starts with an lb because lb is used for leader boards.
++ Because the program contents are stored in local storage, it may not work externally.
